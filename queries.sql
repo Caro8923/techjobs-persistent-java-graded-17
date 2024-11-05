@@ -1,4 +1,8 @@
 --Part 1
+-- int id
+-- String employer
+-- String name
+-- Sting skills
 
 --Part 2
 
