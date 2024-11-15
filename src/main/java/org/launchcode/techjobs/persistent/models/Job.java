@@ -11,20 +11,22 @@ import java.util.List;
 public class Job extends AbstractEntity {
 
     @ManyToOne
+    @NotNull(message = "Employer is required")
     private Employer employer;
 
     //refactor Job.skills
     @ManyToMany(mappedBy = "jobs")
     private List<Skill> skills;
 
+    
     public Job() {
     }
 
     // Initialize the id and value fields.
-    public Job(Employer anEmployer, List<Skill> someSkills) {
+    public Job(Employer employer, List<Skill> skills) {
         super();
-        this.employer = anEmployer;
-        this.skills = someSkills;
+        this.employer = employer;
+        this.skills = skills;
     }
 
     // Getters and setters.
