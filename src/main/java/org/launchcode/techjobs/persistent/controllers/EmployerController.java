@@ -18,6 +18,8 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
+    //index method responding with a list of employers in database
+    //model attribute "employers" to pass repository data into view
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("employers", employerRepository.findAll());
@@ -34,17 +36,22 @@ public class EmployerController {
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
 
+        //given code - sends back to add form if submitted employer info is invalid
         if (errors.hasErrors()) {
             return "employers/add";
         }
 
+        //saves valid employer object in Employer Repository
         employerRepository.save(newEmployer);
         return "redirect:";
     }
 
+
+    //renders page to view contents of individual employer object
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
+        //looks for given employer object from the data layer
         Optional optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();

@@ -35,17 +35,21 @@ public class SkillController {
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
                                          Errors errors, Model model) {
 
+        //sends back to add form if submitted employer info is invalid
         if (errors.hasErrors()) {
             return "skills/add";
         }
 
+        //saves valid skill object in Skill Repository
         skillRepository.save(newSkill);
         return "redirect:";
     }
 
+    //renders page to view contents of individual skill object
     @GetMapping("view/{skillId}")
     public String displayViewSkill(Model model, @PathVariable int skillId) {
 
+        //looks for given skill object from the data layer
         Optional optSkill = skillRepository.findById(skillId);
         if (optSkill.isPresent()) {
             Skill skill = (Skill) optSkill.get();

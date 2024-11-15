@@ -16,14 +16,26 @@ public class Employer extends AbstractEntity {
     @Size(min = 3, max = 100)
     private String location;
 
-    @OneToMany(mappedBy = "employer")
+    @OneToMany
+    @JoinColumn(name = "employer_id")
     private List<Job> jobs = new ArrayList<>();
 
     public Employer(String location) {
+        super();
         this.location = location;
     }
 
-    public Employer() {}
+    //no arg constructor for hibernate to create an object
+    public Employer() {
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
+    }
 
     public String getLocation() {return location;}
 
