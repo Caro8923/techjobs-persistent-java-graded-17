@@ -15,10 +15,10 @@ public class Job extends AbstractEntity {
     private Employer employer;
 
     //refactor Job.skills
-    @ManyToMany(mappedBy = "jobs")
+    @ManyToMany
     private List<Skill> skills;
 
-    
+
     public Job() {
     }
 

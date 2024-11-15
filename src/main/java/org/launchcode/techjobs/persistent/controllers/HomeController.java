@@ -58,7 +58,9 @@ public class HomeController {
 
         //redirect back to add job form if errors
         if (errors.hasErrors()) {
-	    model.addAttribute("title", "Add Job");
+	    model.addAttribute("title", "Please try again");
+        model.addAttribute("employers", employerRepository.findAll());
+        model.addAttribute("skills", skillRepository.findAll());
         return "add";
         }
 
