@@ -11,7 +11,6 @@ import java.util.List;
 public class Job extends AbstractEntity {
 
     @ManyToOne
-    @NotNull(message = "Employer is required")
     private Employer employer;
 
     //refactor Job.skills

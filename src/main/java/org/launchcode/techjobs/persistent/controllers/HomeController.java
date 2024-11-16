@@ -45,24 +45,24 @@ public class HomeController {
     //user will select an employer when they add a job
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
-	model.addAttribute("title", "Add Job");
-    model.addAttribute("employers", employerRepository.findAll());
-    model.addAttribute("skills", skillRepository.findAll());
-    model.addAttribute(new Job());
-    return "add";
+        model.addAttribute("title", "Add Job");
+        model.addAttribute("employers", employerRepository.findAll());
+        model.addAttribute("skills", skillRepository.findAll());
+        model.addAttribute(new Job());
+        return "add";
     }
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
-                                       Errors errors, Model model, @RequestParam int employerId,
-                                        @RequestParam List<Integer> skills) {
+                                    Errors errors, Model model, @RequestParam int employerId,
+                                    @RequestParam List<Integer> skills) {
 
         //redirect back to add job form if errors
         if (errors.hasErrors()) {
-	    model.addAttribute("title", "Please try again");
-        model.addAttribute("employers", employerRepository.findAll());
-        model.addAttribute("skills", skillRepository.findAll());
-        return "add";
+            model.addAttribute("title", "Please try again");
+            model.addAttribute("employers", employerRepository.findAll());
+            model.addAttribute("skills", skillRepository.findAll());
+            return "add";
         }
 
         //select employer that has been chosen to be affiliated with this job (using single id)
@@ -83,10 +83,20 @@ public class HomeController {
         return "redirect:";
     }
 
+    //view job information when click on a specific job
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-
+        Optional<Job> result = jobRepository.findById(jobId);
+        if (result.isEmpty()) {
+            model.addAttribute("job", "Invalid Choice ");
+        } else {
+            Job job = result.get();
+            model.addAttribute("job", job);
+        }
             return "view";
+
+
     }
 
 }
+
