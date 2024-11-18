@@ -23,6 +23,7 @@ import java.util.Optional;
 @Controller
 public class HomeController {
 
+    //tells spring where an injection occurs (pulls from @Repository data)
     @Autowired
     private JobRepository jobRepository;
 

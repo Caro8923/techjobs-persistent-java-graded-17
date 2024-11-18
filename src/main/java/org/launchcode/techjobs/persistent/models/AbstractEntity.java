@@ -10,13 +10,16 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
+//not creating a table
 @MappedSuperclass
 public abstract class AbstractEntity {
 
+    //all subclasses will be entities themselves
     @Id
     @GeneratedValue
     private int id;
 
+    //validation annotations: name not blank, size limitation
     @NotBlank
     @Size(min = 3, max = 100)
     private String name;

@@ -32,6 +32,7 @@ public class EmployerController {
         return "employers/add";
     }
 
+    //handles submitted employer object information
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {

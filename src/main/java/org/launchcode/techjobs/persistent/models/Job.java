@@ -7,6 +7,8 @@ import jakarta.persistence.ManyToOne;
 
 import java.util.List;
 
+
+//determines structure of the table
 @Entity
 public class Job extends AbstractEntity {
 
@@ -18,6 +20,7 @@ public class Job extends AbstractEntity {
     private List<Skill> skills;
 
 
+    //no arg constructor required for hibernate to create an object
     public Job() {
     }
 

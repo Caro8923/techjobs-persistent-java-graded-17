@@ -16,6 +16,8 @@ public class Employer extends AbstractEntity {
     @Size(min = 3, max = 100)
     private String location;
 
+    //name of the foreign key column
+    //declares relationship between tables
     @OneToMany
     @JoinColumn(name = "employer_id")
     private List<Job> jobs = new ArrayList<>();
